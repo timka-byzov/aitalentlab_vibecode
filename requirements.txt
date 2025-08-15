@@ -1,0 +1,4 @@
+python-telegram-bot[ext]~=20.6
+beautifulsoup4~=4.12.3
+requests~=2.31.0
+PyPDF2~=3.0.0

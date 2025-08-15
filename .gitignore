@@ -1,0 +1,7 @@
+.vscode/
+.venv/
+.env
+__pycache__/
+admission_bot_persistence
+test_parser.py
+examples/

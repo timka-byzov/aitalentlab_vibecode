@@ -1,0 +1,33 @@
+# Configuration for the Recommendation Service
+# Keywords should be in their base/dictionary form (lemma) for best results.
+knowledge_areas:
+  math:
+    - математика
+    - алгебра
+    - анализ
+    - статистика
+    - оптимизация
+    - вероятность # Added example
+  programming:
+    - программирование
+    - алгоритм
+    - структура
+    - python
+    - java
+    - c++
+  ai:
+    - искусственный интеллект
+    - машинное обучение
+    - нейронная сеть
+    - компьютерное зрение
+  data:
+    - база данных
+    - big data
+    - анализ данных
+    - data science
+  product:
+    - продукт
+    - менеджмент
+    - управление
+    - бизнес
+    - стартап
