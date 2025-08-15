@@ -24,7 +24,6 @@ class ItmoParser:
         """Parse curriculum from program page"""
         response = self.session.get(program_url)
         response.raise_for_status()
-        
 
         # Find academic_plan URL from JSON data
         academic_plan_pattern = r'"academic_plan"\s*:\s*"([^"]+)"'

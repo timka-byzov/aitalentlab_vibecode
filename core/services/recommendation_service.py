@@ -15,7 +15,9 @@ class RecommendationService:
     """
 
     def __init__(
-        self, curricula: Dict[str, ProgramCurriculum], config_path: str = "./knowledge_areas.yaml"
+        self,
+        curricula: Dict[str, ProgramCurriculum],
+        config_path: str = "./knowledge_areas.yaml",
     ):
         """
         Initializes the service with program curricula and configuration.
@@ -45,7 +47,6 @@ class RecommendationService:
         except FileNotFoundError:
             # Handle case where config is missing, you might want to log a warning
             raise FileNotFoundError(f"Config file not found at {path}")
-
 
     def _normalize_word(self, word: str) -> str:
         """Converts a word to its base (normal) form."""
