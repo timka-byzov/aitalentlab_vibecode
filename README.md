@@ -1,31 +1,35 @@
-# ITMO Admission Bot
+# Бот для поступления в ИТМО
 
-This Telegram bot helps prospective students choose between two AI master's programs at ITMO University and plan their studies based on their background.
+![img](./doc/dialogue1.png)
 
-## Features
-- Parses curriculum data from ITMO University websites
-- Recommends elective courses based on student background
-- Generates personalized study plans
-- Answers questions about the programs
-- Supports both Russian and English languages
+Этот Telegram-бот помогает абитуриентам выбрать между двумя магистерскими программами по искусственному интеллекту в Университете ИТМО и спланировать обучение на основе их подготовки. 
 
-## Project Structure
+В основе бота лежит рекомендательная система, основанная на правилах и предназначенная для построения персонализированного учебного плана путем предложения релевантных курсов по выбору. Работа системы основана на скоринге каждого курса в зависимости от самооценки студента в ключевых областях, таких как программирование, наука о данных и математика. Для надежного сопоставления названий курсов с областями знаний алгоритм использует библиотеку pymorphy3 для проведения морфологического анализа (лемматизации), что позволяет точно определять разные формы слов. Система является гибкой и поддерживает две стратегии: deepen — для углубления знаний в уже сильных областях, и broaden — для расширения компетенций и заполнения пробелов. Все ключевые слова, определяющие области знаний, вынесены во внешний конфигурационный файл config.yaml, что обеспечивает простоту поддержки и расширения системы.
+
+## Возможности
+- Парсит данные учебных планов с сайтов ИТМО
+- Рекомендует элективные курсы на основе подготовки студента
+- Генерирует индивидуальные учебные планы
+- Отвечает на вопросы о программах
+- Поддерживает русский и английский языки
+
+## Структура проекта
 ```
-├── core/                  # Core application logic
-│   ├── domain/            # Domain models
-│   └── services/          # Business logic services
-├── infrastructure/        # Infrastructure components
-│   ├── scraping/          # Web scraping functionality
-│   └── telegram/          # Telegram bot implementation
-├── examples/              # Sample curriculum data
-├── src/                   # Additional source files
-├── knowledge_areas.yaml   # Configuration of knowledge areas
-├── requirements.txt       # Python dependencies
-└── test_parser.py         # Parser test script
+├── core/                  # Основная логика приложения
+│   ├── domain/            # Доменные модели
+│   └── services/          # Сервисы бизнес-логики
+├── infrastructure/        # Инфраструктурные компоненты
+│   ├── scraping/          # Функциональность веб-скрапинга
+│   └── telegram/          # Реализация Telegram-бота
+├── examples/              # Примеры данных учебных планов
+├── src/                   # Дополнительные исходные файлы
+├── knowledge_areas.yaml   # Конфигурация областей знаний
+├── requirements.txt       # Зависимости Python
+└── test_parser.py         # Скрипт тестирования парсера
 ```
 
-## Setup
-1. Create a virtual environment:
+## Установка
+1. Создайте виртуальное окружение:
 ```bash
 # Linux/macOS
 python -m venv venv
@@ -36,24 +40,24 @@ python -m venv venv
 venv\Scripts\activate
 ```
 
-2. Install dependencies:
+2. Установите зависимости:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Set up environment variables:
+3. Настройте переменные окружения:
 ```bash
-# Create .env file with your Telegram bot token
+# Создайте файл .env с токеном вашего Telegram-бота
 echo "TELEGRAM_BOT_TOKEN='your_bot_token_here'" > .env
 ```
 
-4. Run the bot:
+4. Запустите бота:
 ```bash
 python infrastructure/telegram/bot.py
 ```
 
-## Configuration
-The `knowledge_areas.yaml` file defines knowledge areas used for recommendations. Example structure:
+## Конфигурация
+Файл `knowledge_areas.yaml` определяет области знаний, используемые для рекомендаций. Пример структуры:
 ```yaml
 knowledge_areas:
   math:
@@ -66,38 +70,20 @@ knowledge_areas:
     - python
 ```
 
-## Testing
-Run the test script to verify curriculum parsing:
-```bash
-python test_parser.py
-```
 
-## Usage
-1. Start the bot with `/start`
-2. Choose a program (AI or AI Product)
-3. Rate your background in 5 areas (0-5)
-4. Receive a personalized study plan
-5. Ask questions about the program
+## Использование
+1. Запустите бота командой `/start`
+2. Выберите программу (AI или AI Product)
+3. Оцените свою подготовку по 5 областям (0-5 баллов)
+4. Получите индивидуальный учебный план
+5. Задавайте вопросы о программе
 
-Example interaction:
+Пример взаимодействия:
 ```
 User: /start
-Bot: Welcome! Choose a program: [AI, AI Product]
+Bot: Добро пожаловать! Выберите программу: [AI, AI Product]
 User: AI
-Bot: Rate your math background (0-5): 
+Bot: Оцените вашу подготовку по математике (0-5): 
 User: 4
 ...
 ```
-
-## Contributing
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/your-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin feature/your-feature`)
-5. Create a pull request
-
-## Roadmap
-- [ ] Add more program options
-- [ ] Implement course scheduling
-- [ ] Add multilingual support
-- [ ] Create web interface
